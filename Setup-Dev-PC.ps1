@@ -1,7 +1,7 @@
 # Install Chocolatey
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) 
 
-# Configure NuGet
+# Configure Package Sources
 Install-PackageProvider -Name Nuget -MinimumVersion 2.8.5.201 -Force
 Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
 
@@ -45,7 +45,6 @@ choco install azure-cli -y
 choco install fira hackfont ubuntu.font robotofonts cascadiacode -y
 
 choco install oh-my-posh --version=2.0.496 -y
-Set-PSRepository PSGallery -InstallationPolicy Trusted
 Install-Module oh-my-posh
 Invoke-Expression (oh-my-posh --init --shell pwsh)
 Set-PoshPrompt -Theme jandedobbeleer 
@@ -63,10 +62,11 @@ choco install jetbrainstoolbox -y
 choco install visualstudio2019professional -y
 choco install resharper -y
 
-# Chocolatey - Data Tools
+# Install Data Tools
 choco install sql-server-management-studio -y
 choco install microsoftazurestorageexplorer -y
 
+# Install Utilities
 choco install keepass -y
 choco install rdmfree -y
 choco install github-desktop -y
