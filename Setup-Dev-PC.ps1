@@ -1,6 +1,10 @@
 # Install Chocolatey
 Invoke-Expression ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1')) 
 
+# Configure NuGet
+Install-PackageProvider -Name Nuget -MinimumVersion 2.8.5.201 -Force
+Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+
 # Install Git
 choco install git -y
 
@@ -10,10 +14,7 @@ if (($env:Path.Split(';') -contains "C:\Program Files\Git\bin") -eq $false) {
 }
 
 git config --global user.name "Anthony Watts"
-git config --global user.email "awatts@internal.colt.net"
-
-# Install powershell
-choco install powershell -y
+git config --global user.email "anthonypwatts@gmail.com"
 
 # Setup machine
 # Show File Extensions
@@ -24,13 +25,6 @@ Set-ItemProperty $key ShowSuperHidden 0
 Stop-Process -processname explorer
 
 ############################### Set UK English
-
-# Install PSGet
-(new-object Net.WebClient).DownloadString("http://psget.net/GetPsGet.ps1") | Invoke-Expression
-install-module pscx
-
-# Install More Git Stuff
-choco install git-credential-winstore -y
 
 # Install Browsers
 choco install googlechrome -y
@@ -50,7 +44,7 @@ choco install powershell-core -y
 choco install azure-cli -y
 choco install fira hackfont ubuntu.font robotofonts cascadiacode -y
 
-choco install oh-my-posh --version=2.0.496
+choco install oh-my-posh --version=2.0.496 -y
 Set-PSRepository PSGallery -InstallationPolicy Trusted
 Install-Module oh-my-posh
 Invoke-Expression (oh-my-posh --init --shell pwsh)
@@ -72,5 +66,9 @@ choco install resharper -y
 # Chocolatey - Data Tools
 choco install sql-server-management-studio -y
 choco install microsoftazurestorageexplorer -y
+
+choco install keepass -y
+choco install rdmfree -y
+choco install github-desktop -y
 
 Restart-Computer -Confirm
